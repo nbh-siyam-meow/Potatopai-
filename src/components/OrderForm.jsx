@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
-import '../src/styles/OrderForm.css';
+import '../styles/OrderForm.css';
 
 function OrderForm({ onOrderComplete }) {
   const [name, setName] = useState('');
@@ -45,9 +45,7 @@ function OrderForm({ onOrderComplete }) {
 
   return (
     <div className="order-form-container">
-      <form onSubmit={handleSubmit}>
-        {/* আপনার ফর্ম UI এখানে */}
-      </form>
+      {/* আপনার ফর্ম UI এখানে */}
     </div>
   );
 }
