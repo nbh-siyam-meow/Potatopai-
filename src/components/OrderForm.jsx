@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
-import '../styles/OrderForm.css';
+import '../src/styles/OrderForm.css';
 
 function OrderForm({ onOrderComplete }) {
   const [name, setName] = useState('');
