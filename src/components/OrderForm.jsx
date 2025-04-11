@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
-import './OrderForm.css';
+import '../styles/OrderForm.css';
 
 function OrderForm({ onOrderComplete }) {
   const [name, setName] = useState('');
@@ -21,11 +21,6 @@ function OrderForm({ onOrderComplete }) {
       setError('Please enter a message for your potato!');
       return;
     }
-    
-    if (message.length > 50) {
-      setError('Message must be 50 words or less');
-      return;
-    }
 
     setIsSubmitting(true);
 
@@ -39,7 +34,6 @@ function OrderForm({ onOrderComplete }) {
         paymentVerified: false,
         createdAt: new Date(),
       });
-
       onOrderComplete(docRef.id);
     } catch (err) {
       console.error("Error adding order:", err);
@@ -51,77 +45,8 @@ function OrderForm({ onOrderComplete }) {
 
   return (
     <div className="order-form-container">
-      <h2>Order Your PotatoPai</h2>
-      <p className="potato-description">Send a potato with a personalized message to your loved ones!</p>
-      
-      <form onSubmit={handleSubmit} className="potato-form">
-        <div className="form-group">
-          <label htmlFor="name">Your Name (optional):</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Potato Lover"
-          />
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="message">Your Message (max 50 words):</label>
-          <textarea
-            id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Write something sweet for your potato recipient..."
-            maxLength={300}
-            required
-          />
-          <small>{message.length}/300 characters</small>
-        </div>
-        
-        <div className="form-group">
-          <label>Delivery Location:</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="location"
-                value="inside"
-                checked={location === 'inside'}
-                onChange={() => setLocation('inside')}
-              />
-              Inside Dhaka (Tk 120)
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="location"
-                value="outside"
-                checked={location === 'outside'}
-                onChange={() => setLocation('outside')}
-              />
-              Outside Dhaka (Tk 170)
-            </label>
-          </div>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="screenshot">Payment Screenshot (after placing order):</label>
-          <input
-            type="file"
-            id="screenshot"
-            accept="image/*"
-            onChange={(e) => setPaymentScreenshot(e.target.files[0])}
-            disabled
-          />
-          <small>You'll be able to upload after placing order</small>
-        </div>
-        
-        {error && <p className="error-message">{error}</p>}
-        
-        <button type="submit" disabled={isSubmitting} className="potato-button">
-          {isSubmitting ? 'Placing Order...' : `Order Now (Tk ${price})`}
-        </button>
+      <form onSubmit={handleSubmit}>
+        {/* আপনার ফর্ম UI এখানে */}
       </form>
     </div>
   );
